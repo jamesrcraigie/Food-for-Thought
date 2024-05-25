@@ -1,0 +1,24 @@
+        </div>
+        <div class="bg-colour-primary mx-0 w-100 px-2">
+            <footer class="py-3 m-0">
+                <span class="text-center roboto-thin-footer">© 2024 Food-forThought, powerd by Spoonacular API <a href="https://spoonacular.com/food-api"><img class="spoonacular-logo" src="https://spoonacular.com/application/frontend/images/logo-simple-framed-green-gradient.svg" alt="spoonacular logo"></a></span>
+            </footer>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script>
+            function showNextInput(currentIndex) {
+                const nextIndex = currentIndex + 1;
+                const nextInputId = 'ingredient' + nextIndex;
+                
+                if (nextIndex <= 20 && !document.getElementById(nextInputId)) {
+                  const nextInputHTML = `
+                    <div class="form-group">
+                      <input type="text" class="form-control roboto-thin-body fst-italic" placeholder="Ingredient" id="${nextInputId}" name="${nextInputId}" oninput="showNextInput(${nextIndex})">
+                    </div>
+                  `;
+                  document.getElementById('ingredientsContainer').insertAdjacentHTML('beforeend', nextInputHTML);
+                }
+              }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<%- include("partials/header.ejs") %>
+<div class="form-container bg-colour-primary p-2 rounded-5">
+    <h2 class="roboto-thin-heading text-center pt-2"><%= locals.information.title %></h2>
+    <p class="card-text roboto-thin-footer"><span style="font-weight: bold;">Ingredients:</span></p>
+    <ul class="roboto-thin-footer">
+        <% if(locals.information.extendedIngredients.length !== 0) { %>
+            <% information.extendedIngredients.forEach( i => { %>
+                <li><%= i.original %></li>
+            <% }) %>
+        <% } %>
+    </ul>
+    <p class="card-text roboto-thin-footer"><span style="font-weight: bold;">Steps:</span></p>
+    <ol class="roboto-thin-footer">
+        <% if(locals.instructions) { %>
+            <% locals.instructions.forEach(recipe => { %>
+                <% recipe.steps.forEach(step => { %>
+                    <li><%= step.step %></li>
+                <% }) %>
+            <% }) %>
+        <% } %>
+    </ol>
+</div>
+<%- include("partials/footer.ejs") %>

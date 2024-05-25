@@ -1,0 +1,42 @@
+<%- include("partials/header.ejs") %>
+<div class="form-container d-flex flex-column align-items-center bg-color-secondary">
+    <% if(locals.recipes.length === 0) { %>
+        <h2 class="roboto-thin-heading text-center pt-2">Nothing to see here...</h2>
+    <% }else { %>
+        <% locals.recipes.forEach(recipe => { %>
+            <div class="card mb-3 rounded bg-colour-primary recipe-card">
+                <div class="row no-gutters">
+                  <div class="col-md-4 d-flex align-items-center">
+                    <img src="<%= recipe.image %>" class="recipe-image card-img m-2" alt="Recipe image">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title roboto-thin-heading"><%= recipe.title %></h5>
+                      <% if(recipe.usedIngredients.length !== 0) { %>
+                        <p class="card-text roboto-thin-footer"><span style="font-weight: bold;">Used ingredients:</span>
+                            <% recipe.usedIngredients.forEach(i => { %>
+                                <%= `${i.name},` %>
+                            <% }) %>
+                        </p>
+                      <% } %>
+                      <% if(recipe.missedIngredients.length !== 0) { %>
+                        <p class="card-text roboto-thin-footer"><span style="font-weight: bold;">Missed ingredients:</span>
+                            <% recipe.missedIngredients.forEach(i => { %>
+                                <%= `${i.name},` %>
+                            <% }) %>
+                        </p>
+                      <% } %>
+                    </div>
+                  </div>
+                </div>
+                <form class="w-100 m-2" action="/recipe/<%= recipe.id %>" method="post">
+                    <input type="text" name="id" hidden value="<%= recipe.id %>">
+                    <div class="text-end m-2">
+                        <input class="button-3 mx-2" type="submit" value="Full Recipe">
+                    </div>
+                </form>
+            </div>
+        <% }) %>
+    <% } %>
+</div>
+<%- include("partials/footer.ejs") %>
